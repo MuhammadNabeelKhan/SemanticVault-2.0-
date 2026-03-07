@@ -9,7 +9,7 @@ from loading_embedding import *
 
 def retreive_doc(query):
     #the connection string is telling python where the database is and how to login
-    connection_string = "postgresql+psycopg://postgres:password@localhost:5432/rag_db"
+    connection_string = os.getenv("DATABASE_URL")
     #//username:passoword@location/specific-database
 
     embedding_logic = embedding_model()
@@ -26,5 +26,6 @@ def retreive_doc(query):
 
 #    for result in results:
 #       print(result)
+
 
     return results
