@@ -2,7 +2,7 @@
 #Get user query 
 #Find the most similar chunks using cosine similarity
 #Return those chunks
-
+import os
 from langchain_postgres import PGVector
 from langchain_openai import OpenAIEmbeddings
 from loading_embedding import *
@@ -29,3 +29,4 @@ def retreive_doc(query):
 
 
     return results
+
