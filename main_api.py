@@ -41,6 +41,7 @@ def clear_db():
 
 @app.post("/rag/upload")
 async def upload_file(file: UploadFile = File(...)):
+    os.makedirs("docs_path", exist_ok=True)
 
     file_path = f"docs_path/{file.filename}"
     with open(file_path, "wb") as f:
