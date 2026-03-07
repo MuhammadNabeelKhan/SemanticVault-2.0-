@@ -5,8 +5,8 @@ from retrieval import retreive_doc
 
 def send_to_gpt(query, relevant_docs):
 
-    context = '\n'.join([doc.page_content for doc, score in relevant_docs if score > 0.5])
-    #context = '\n'.join([doc.page_content for doc, score in relevant_docs])
+    #context = '\n'.join([doc.page_content for doc, score in relevant_docs if score > 0.5])
+    context = '\n'.join([doc.page_content for doc, score in relevant_docs])
 
     if not context:
       return "I couldn't find anything relevant in the documents."
