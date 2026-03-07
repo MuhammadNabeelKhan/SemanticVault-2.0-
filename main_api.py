@@ -23,7 +23,7 @@ def list_db_files():
 @app.get("/rag/clear")
 def clear_db():
     #this will clear everything in the postgres data base
-    conn = psycopg.connect("postgresql://postgres:password@localhost:5432/rag_db")
+    conn = psycopg.connect("postgresql://postgres:nymRaUMnoFSkSbjgVhKhXxRuyXyyTNxS@postgres.railway.internal:5432/railway")
     conn.execute("DELETE FROM langchain_pg_embedding;")
     conn.commit()
     conn.close()
@@ -61,4 +61,5 @@ async def upload_file(file: UploadFile = File(...)):
 def query_rag(request: QueryRequest):
     relevant_docs = retreive_doc(request.query)
     answer = send_to_gpt(query = request.query, relevant_docs= relevant_docs)
+
     return {"answer": answer}
