@@ -51,7 +51,7 @@ def embedding_model():
 #and the meta data. Unlike ChromaDB, which is just a blackbox, this gives us a neat way
 #to see the data and how it is being stored.
 def store_vectors(embedding_logic, chunks):
-    connection_string = "postgresql+psycopg://postgres:password@localhost:5432/rag_db"
+    connection_string = os.getenv("DATABASE_URL")
     #vector_store is a tool that interacts with the database of postgres. We can 
     #run similarity searches on it and that will connect us with the vectorized info
     vector_store = PGVector.from_documents(documents = chunks , connection= connection_string, embedding = embedding_logic)
@@ -71,3 +71,4 @@ def store_vectors(embedding_logic, chunks):
 
 #docker run -d --name pgvector-db -e POSTGRES_PASSWORD=password 
 #-e POSTGRES_DB=rag_db -p 5432:5432 pgvector/pgvector:pg16
+
