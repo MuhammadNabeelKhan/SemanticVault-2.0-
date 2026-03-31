@@ -7,6 +7,18 @@ import psycopg
 
 app = FastAPI()
 
+from fastapi.middleware.cors import CORSMiddleware
+
+
+#this will let us send request to fasiapi, our server thats uploaded on railway, then returns
+#info to our local host.
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
 class QueryRequest(BaseModel):
     query:str
 
