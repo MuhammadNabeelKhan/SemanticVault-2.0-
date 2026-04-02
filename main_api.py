@@ -52,6 +52,17 @@ def clear_db():
 
 
 @app.post("/rag/upload")
+#so file: is telling fastAPi that it must be named file we do this when we package it in the 
+# javascript form data. 
+# then uploadfile is a type that helps us get multiple methods on the file later like 
+# file.filename/file.read etc, 
+# the file jsut arries as raw http data, uploadfiel tells fast api to wrap it into an upladofile
+# Object so we can intereact with ti and use methods instead of it just being raw dat  
+#it must havae a filed section named file for it to work and that is required 
+#basically tells it to check that the http request
+# has a file field in the body and that it is existing. 
+#when we wrap it in a formdata object in the front end, we specify the name of the field 
+# as file, so that is why we have to have file: here
 async def upload_file(file: UploadFile = File(...)):
     os.makedirs("docs_path", exist_ok=True)
 

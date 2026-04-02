@@ -20,24 +20,53 @@
 
         <br><br>
 
-        <p id = "anwser"> </p>
+        <p id = "answer"> </p>
         
 <script>
 
+
+//so this is retreive the button we made it basically retreives it by the id we assignesed
+//then we add an event listenr meaning listen or look for a click, then we make a function 
+//desgined around what happens when we click it.
+//we then make it so that we retreive the file, again t
 document.getElementById("uploadBtn").addEventListener("click", function (){
 
     let uploadedFile = document.getElementById("fileUpload").files[0];
 
+    //so formdata is a package that wraps my file in a way that an HTTP request can 
+    //carry them
     let formData = new FormData();
+    //we are then adding that file to the form data.
     formData.append("file", uploadedFile);
 
-fetch("https://uvicorn-mainapi-production.up.railway.app/rag/upload", {
+    fetch("https://uvicorn-mainapi-production.up.railway.app/rag/upload", {
+        //so we specify what we want exactly in this case 
 
-    method: "POST",
-    body: formData
-})
+        method: "POST",
+        body: formData
+    });
+});
 
-    
+
+document.getElementById("queryBtn").addEventListener("click", function (){
+
+    //value gets the text content of an input field.
+    let uploadedQuery = document.getElementById("query").value
+
+    fetch("https://uvicorn-mainapi-production.up.railway.app/rag/query", { 
+
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        //json-stringifies the input text the user asked for
+        //this needs to be in the form of query: uplloadedQuery because 
+        //in the backend we have it looking for the key called query and the string
+        //query:str
+        body: JSON.stringify({query: uploadedQuery})
+    })
+    .then(response => response.json())
+    .then(data => {
+        document.getElementById("answer").innerText = data.answer;
+    });
 });
 
 </script>
