@@ -15,13 +15,18 @@ def embeddings(list_dic_chunks):
             model="text-embedding-3-small",
             input = dics_chunks["text"]
         ).data[0].embedding
-        embedded_chunksInfo = {"file_name": dics_chunks["file_name"], "text":embedded_text}  
+
+        embedded_chunksInfo = {
+            "file_name": dics_chunks["file_name"], 
+            "text":dics_chunks["text"],
+            "embedded_text":embedded_text}
+          
         list_of_embedded_chunksInfo.append(embedded_chunksInfo)
 
     return list_of_embedded_chunksInfo
 
 
-if __name__ == "__main__":
+if __name__ == "__main__":  
     response = client.embeddings.create(
         model="text-embedding-3-small",
         input="I went to the see hehehe"
