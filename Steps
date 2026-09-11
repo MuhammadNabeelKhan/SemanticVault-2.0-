@@ -1,7 +1,0 @@
-RAG-AI Project — Build Log
-Vision
-Building a RAG system where users upload their own documents (PDF or .txt), which get chunked and embedded automatically. Based on user queries, the system retrieves the top 5 most relevant chunks and generates an answer.
-Current Problems
-
-Have to manually run main.py every time before the FastAPI server to chunk, embed and store documents — need to automate this through an upload endpoint
-Need to add support for parsing PDFs properly
